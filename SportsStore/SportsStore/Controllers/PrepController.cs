@@ -1,4 +1,8 @@
-﻿using SportsStore.Models;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using SportsStore.Infrastructure.Identity;
+using SportsStore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +23,15 @@ namespace SportsStore.Controllers
         {
             return View(repo.Products);
         }
+
+        [Authorize(Roles = "Administrators")]
         public async Task<ActionResult> DeleteProduct(int id)
         {
             await repo.DeleteProductAsync(id);
             return RedirectToAction("Index");
         }
+
+        [Authorize(Roles = "Administrators")]
         public async Task<ActionResult> SaveProduct(Product product)
         {
             await repo.SaveProductAsync(product);
@@ -42,6 +50,22 @@ namespace SportsStore.Controllers
         {
             await repo.SaveOrderAsync(order);
             return RedirectToAction("Orders");
+        }
+
+        //para inicio de sesión
+        public async Task<ActionResult> SignIn()
+        {
+            IAuthenticationManager authMgr = HttpContext.GetOwinContext().Authentication;
+            StoreUserManager userMrg = HttpContext.GetOwinContext().GetUserManager<StoreUserManager>();
+            StoreUser user = await userMrg.FindAsync("Admin", "secret");
+            authMgr.SignIn(await userMrg.CreateIdentityAsync(user,
+            DefaultAuthenticationTypes.ApplicationCookie));
+            return RedirectToAction("Index");
+        }
+        public ActionResult SignOut()
+        {
+            HttpContext.GetOwinContext().Authentication.SignOut();
+            return RedirectToAction("Index");
         }
     }
 }
