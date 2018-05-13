@@ -16,10 +16,10 @@ namespace SportsStore
             app.CreatePerOwinContext<StoreRoleManager>(StoreRoleManager.Create);
 
             //setea las cookies para los requests
-            app.UseCookieAuthentication(new CookieAuthenticationOptions
-            {
-                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie
-            });
+            //app.UseCookieAuthentication(new CookieAuthenticationOptions
+            //{
+            //    AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie
+            //});
         }
     }
 }
