@@ -9,6 +9,8 @@ namespace SportsStore
     {
         public static void Register(HttpConfiguration config)
         {
+            //HttpConfiguration class provides properties and methods to configure different aspects of the way that Web API works
+
             // Web API configuration and services
 
             // Web API routes
@@ -19,6 +21,9 @@ namespace SportsStore
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            //configuring serialization to Json only
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
         }
     }
 }
