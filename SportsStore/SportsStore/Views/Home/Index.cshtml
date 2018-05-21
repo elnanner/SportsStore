@@ -1,0 +1,28 @@
+﻿
+
+<h2>Content will go here</h2>
+
+@*<div class="container" ng-controller="productController">
+    <ul>
+        <li ng-repeat="product in model.products">{{product}}</li>
+    </ul>
+</div>*@
+<div ng-controller="commonController">
+    <div ng-controller="productController">
+    
+        <div class="panel panel-primary">
+            <div class="panel-heading">Authentication</div>
+            <table class="table table-striped">
+                <tr><td>Authenticated:</td><td ng-model="authenticated"></td></tr>
+                <tr><td>User:</td><td ng-model="username"></td></tr>
+                <tr>
+                    <td colspan="2">
+                        <button ng-click="testAuth()">
+                            Authenticate
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
