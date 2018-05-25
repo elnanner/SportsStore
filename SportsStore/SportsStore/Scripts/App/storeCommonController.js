@@ -1,23 +1,15 @@
-﻿var app = angular.module("App", []);
-app.controller("commonController", function ($scope) {
-    var authenticateUrl = "/authenticate";
+﻿
+app.controller('authController',  function ($scope, authService) {//no pasar en []
+    $scope.userName = "Admin";
+    $scope.password = "";
+    $scope.isAuthenticated = false;
 
-    $scope.testAuth = function () {
-        username = "Admin";
-        password = "secret";
-        this.authenticate();
-    }
-    $scope.authenticate = function (successCallback) {
-        sendRequest(
-            authenticateUrl,
-            "POST",
-            { "grant_type": "password", username: username, password: password },
-            function (data) {
-                model.authenticated = true;
-                setAjaxHeaders({ Authorization: "bearer " + data.access_token });
-                if (successCallback) {
-                    successCallback();
-                }
-            });
+    $scope.authenticate = function () {
+        console.log('----BEGIN----');
+        authService.authenticate({ userName: $scope.userName, password: $scope.password })
+            .then(function (response) { $scope.isAuthenticated = response.isAuth; $('#_password').val('') }, function (response) { $scope.isAuthenticated = response});
+       
+        console.log('----END----');
     };
+    
 });

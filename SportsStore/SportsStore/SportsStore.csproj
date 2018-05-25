@@ -199,6 +199,7 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\App\app.js" />
+    <Content Include="Scripts\App\authService.js" />
     <Content Include="Scripts\App\storeAjax.js" />
     <Content Include="Scripts\App\storeCommonController.js" />
     <Content Include="Scripts\App\storeModel.js" />
@@ -959,6 +960,8 @@
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\knockout-3.1.0.debug.js" />
+    <Content Include="Scripts\knockout-3.1.0.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

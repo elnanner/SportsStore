@@ -3,26 +3,31 @@
 <h2>Content will go here</h2>
 
 @*<div class="container" ng-controller="productController">
-    <ul>
-        <li ng-repeat="product in model.products">{{product}}</li>
-    </ul>
-</div>*@
-<div ng-controller="commonController">
-    <div ng-controller="productController">
-    
-        <div class="panel panel-primary">
-            <div class="panel-heading">Authentication</div>
-            <table class="table table-striped">
-                <tr><td>Authenticated:</td><td ng-model="authenticated"></td></tr>
-                <tr><td>User:</td><td ng-model="username"></td></tr>
-                <tr>
-                    <td colspan="2">
-                        <button ng-click="testAuth()">
-                            Authenticate
-                        </button>
-                    </td>
-                </tr>
-            </table>
-        </div>
+        <ul>
+            <li ng-repeat="product in model.products">{{product}}</li>
+        </ul>
+    </div>*@
+
+<div class="panel panel-primary" ng-controller="authController">
+    <div class="panel-heading">Authentication <span ng-show="isAuthenticated">Autenticado</span></div>
+    <div class="container">
+        <hr />
+        <label for="_userName">Usuario:</label>
+        <input type="text" name="name" id="_username" ng-model="userName" />
+        <label for="_password">Password:</label>
+        <input type="password" name="password" value="" id="_password" placeholder="Ingrese su contraseña" ng-model="password" />
+        <hr />
     </div>
+    <table class="table table-striped">
+        
+        <tr><td>Authenticated:</td><td>{{isAuthenticated}}</td></tr>
+        <tr><td>User:</td><td >{{userName}}</td></tr>
+        <tr>
+            <td colspan="2">
+                <button ng-click="authenticate()">
+                    Authenticate
+                </button>
+            </td>
+        </tr>
+    </table>
 </div>

@@ -1,5 +1,10 @@
-﻿var app = angular.module("App", []);
+﻿/*Booting up our app and configuring routes*/
 
-app.controller("myCtrl", function ($scope) {
-    $scope.modelData = "No data";
-});
+var app = angular.module('App', [/*'ngRoute', 'LocalStorageModule', 'angular-loading-bar'*/]);
+
+//routes later
+
+app.run(['authService', function (authService) {
+    authService.welcome();
+    //authService.authenticate({ username: "Admin", password: "secret" });
+}]);
